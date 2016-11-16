@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.create</groupId>
-	<artifactId>angular</artifactId>
+	<artifactId>spring-boot-angular</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>angular</name>
+	<name>spring-boot-angular</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -27,15 +27,9 @@
 		<jquery.veriosn>2.1.1</jquery.veriosn>
 		<atmosphere.version>2.3.0</atmosphere.version>
 		<js.atmosphere.version>2.2.11</js.atmosphere.version>
-		<protobuf.version>3.0.0-alpha-3</protobuf.version>
-		<slf4j.version>1.7.12</slf4j.version>
-		<assertj.version>1.7.1</assertj.version>
-		<mockito.version>1.10.8</mockito.version>
-		<powermock.version>1.5.6</powermock.version>
 		<junit.version>4.12</junit.version>
 		<jasmine.version>2.0-beta-02</jasmine.version>
 		<compile.maven.plugin.version>3.3</compile.maven.plugin.version>
-		<protoc.maven.plugin.version>0.4.2</protoc.maven.plugin.version>
 		<assembly.maven.plugin.version>2.5.5</assembly.maven.plugin.version>
 		<dependency.maven.plugin.version>2.10</dependency.maven.plugin.version>
 		<toolchain.maven.plugin.version>1.1</toolchain.maven.plugin.version>
@@ -59,24 +53,6 @@
 					<configuration>
 						<source>${java.version}</source>
 						<target>${java.version}</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>com.google.protobuf.tools</groupId>
-					<artifactId>maven-protoc-plugin</artifactId>
-					<version>${protoc.maven.plugin.version}</version>
-					<executions>
-						<execution>
-							<!-- <phase>process-sources</phase> -->
-							<goals>
-								<goal>compile</goal>
-								<goal>test-compile</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<protocExecutable>/usr/local/bin/protoc</protocExecutable>
-						<!-- <protoSourceRoot></protoSourceRoot> -->
 					</configuration>
 				</plugin>
 				<plugin>
@@ -207,12 +183,6 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>atmosphere-javascript</artifactId>
 			<version>${js.atmosphere.version}</version>
-		</dependency>
-
-		<!-- Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
 		</dependency>
 
 	</dependencies>
