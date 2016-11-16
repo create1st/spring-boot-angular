@@ -1,0 +1,93 @@
+<div xmlns:ng="http://angularjs.org" xmlns:ui="http://angularjs.org/ui"
+	xmlns:scrollable="http://angularjs.org/scrollable-table"
+	xmlns:sortable="http://angularjs.org/sortable-table"
+	ng:controller="mainCtrl">
+	<form name="projectsForm">
+		<div class="checkbox">
+			<label><input id="global" type="checkbox"
+				ng:bind="globalEnabled" ng:model="globalEnabled"
+				ng:change="enableGlobal(globalEnabled)"
+				ng:disabled="globalEnabled === undefined" />Global</label>
+		</div>
+		<scrollable:table watch="visibleProjects">
+			<table id="projects"
+				class="table table-striped table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th sortable:header="true" col="facility">Facility</th>
+						<th sortable:header="true" col="code">Code</th>
+						<th sortable:header="true" col="planYear">Plan year</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng:repeat="proj in visibleProjects" row-id="{{proj.facility}}"
+						ng:class="{info: selected === proj}" ng:click="setSelected(proj)">
+						<td>{{$index}}</td>
+						<td>{{proj.facility | uppercase}}</td>
+						<td>{{proj.code | uppercase}}</td>
+						<td>{{proj.planYear | yearFormat}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</scrollable:table>
+		<div>&nbsp;</div>
+		<table id="projectDetails" class="table table-striped table-bordered"
+			ng:show="selected">
+			<thead>
+				<tr>
+					<th>Facility</th>
+					<th>Code</th>
+					<th>Plan year</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="col-md-2">
+						<div class="form-group"
+							ng:class="{'has-error has-feedback' : projectsForm.facility.$error.required}">
+							<!-- name="facility{{$index}}" -->
+							<input name="facility" ng:required="true"
+								ng:model="selected.facility" ng:blur="modifyProject(selected)"
+								aria-descibedby="facilityError2Status" class="form-control" />
+							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							<span id="facilityError2Status" class="sr-only">(Error)</span>
+						</div>
+					</td>
+					<td>
+						<div class="form-group"
+							ng:class="{'has-error has-feedback' : projectsForm.code.$error.required}">
+
+							<input name="code" ng:required="true" ng:model="selected.code"
+								ng:blur="modifyProject(selected)" code="true"
+								aria-descibedby="codeError2Status" class="form-control" /> <span
+								class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							<span id="codeError2Status" class="sr-only">(Error)</span>
+
+						</div>
+					</td>
+					<td>
+						<div class="form-group"
+							ng:class="{'has-error has-feedback' : projectsForm.planYear.$error.required}">
+							<select name="planYear" ng:required="true"
+								ng:model="selected.planYear"
+								aria-descibedby="planYearError2Status" class="form-control"
+								ng:options="projectYear.value for projectYear in projectYears"
+								ng:change="changeProjectYear(selected, selected.planYear)"></select>
+							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							<span id="planYearError2Status" class="sr-only">(Error)</span>
+
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div class="form-group" ng:show="selected">
+			<button id="update" class="btn btn-default pull-right" ng:disabled="projectsForm.$invalid" ng:click="f()">Update</button>
+		</div>
+
+
+	</form>
+	<div>&nbsp;</div>
+</div>

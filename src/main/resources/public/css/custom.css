@@ -1,0 +1,12 @@
+/** Fix for scroll table */
+.scrollArea table th:first-child .box {
+    padding: 0 8px;
+    padding-right: 11px;    /*  order icon width*/
+    border-left: 0px;
+}
+
+.scrollArea table th .box {
+    padding: 0 8px;
+    padding-right: 11px;    /*  order icon width*/
+    border-left: 1px solid #ddd;
+}
