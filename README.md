@@ -1,4 +1,4 @@
-# Spring-Boot + Actuator + + Angular JS + Atmosphere 
+# Spring-Boot + Actuator + + Angular JS + Atmosphere + Bootstrap
 
 This is simply DEMO app to demonstrate Spring-Boot with Angular JS and Atmosphere framework.
 
