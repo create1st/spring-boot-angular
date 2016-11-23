@@ -16,8 +16,6 @@
 
 package com.create.application.configuration;
 
-import com.create.application.configuration.web.WebJarsConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,8 +24,4 @@ import org.springframework.context.annotation.Configuration;
 		"com.create.controller"
 })
 public class WebConfiguration  {
-	@Bean
-	public WebJarsConfiguration webJarsConfiguration(){
-		return new WebJarsConfiguration();
-	}
 }
