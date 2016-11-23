@@ -14,20 +14,17 @@
  *
  */
 
-package com.create.application.configuration;
+package com.create.application.configuration.web;
 
-import com.create.application.configuration.web.WebJarsConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-@Configuration
-@ComponentScan({
-		"com.create.controller"
-})
-public class WebConfiguration  {
-	@Bean
-	public WebJarsConfiguration webJarsConfiguration(){
-		return new WebJarsConfiguration();
-	}
+public class WebJarsConfiguration extends WebMvcConfigurerAdapter {
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        if (!registry.hasMappingForPattern("/webjars/**")) {
+            registry.addResourceHandler("/webjars/**").addResourceLocations(
+                    "classpath:/META-INF/resources/webjars/");
+        }
+    }
 }
